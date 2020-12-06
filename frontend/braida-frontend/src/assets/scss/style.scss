@@ -1,0 +1,88 @@
+@import "_colors";
+@import "_variables";
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+body {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: auto 1fr auto;
+    font-family:  'Raleway', sans-serif;
+    background-color: $main-background;
+  }
+  
+header {
+  padding: 0.5rem;
+  margin-bottom: 1em;
+}
+
+main {
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+footer {
+  padding: 0.5rem;
+  text-align: center;
+  margin: 30px;
+}
+
+a{
+  color: $card-background;
+  text-decoration: none;
+}
+
+a:visited{
+  color: $card-background;
+}
+
+.header-logo{
+  max-height: 5rem;
+}
+
+.dashboard-card{
+  margin: 0 auto  3em  auto;
+  width: 350px;
+  height: 170px;
+}
+
+.card-img{
+  background-color: $card-background;
+  padding: 5px;
+  margin: auto;
+  border-radius: $card-radius;
+
+  img{
+    max-height: 150px;
+  }
+}
+
+.flex{
+  display: flex;
+}
+
+.flex-center{
+  align-items: center;
+  justify-content: center;
+}
+
+.bold-text{
+  font-weight: 700;
+}
+
+.card-bottom-text{
+  @extend .bold-text;
+  text-align: left;
+  margin-top: 0;
+  font-size: 1.5rem;
+  position: relative;
+  left: $card-radius;
+}
+
+.background-img{
+  position: fixed;
+  top: 10em;
+  left: -5em;
+  z-index: -1;
+  opacity: 20%;
+  transform: rotate(-30deg);
+}
