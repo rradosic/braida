@@ -1,0 +1,230 @@
+// @import "_colors";
+// @import "_variables";
+// @import "vue-select/src/scss/vue-select.scss";
+// @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+// body {
+//     display: grid;
+//     grid-template-rows: auto 1fr auto;
+//     font-family:  'Raleway', sans-serif;
+//     background-color: $main-background;
+//   }
+  
+// header {
+//   padding: 0.5rem;
+//   margin-bottom: 1em;
+// }
+
+// main {
+//   overflow-x: hidden;
+// }
+
+// footer {
+//   padding: 0.5rem;
+//   text-align: center;
+//   margin: 30px;
+// }
+
+// a{
+//   color: $card-background;
+//   text-decoration: none;
+// }
+
+// a:visited{
+//   color: $card-background;
+// }
+
+// .header-logo{
+//   max-height: 5rem;
+// }
+
+// .dashboard-card{
+//   margin: 0 auto  3em  auto;
+//   max-width: 350px;
+//   height: 170px;
+// }
+
+// .card-img{
+//   background-color: $card-background;
+//   padding: 5px;
+//   margin: auto;
+//   border-radius: $card-radius;
+
+//   img{
+//     max-height: 150px;
+//   }
+// }
+
+// .flex{
+//   display: flex;
+// }
+
+// .flex-center{
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// .bold-text{
+//   font-weight: 700;
+// }
+
+// .semi-bold-text{
+//   font-weight: 500;
+// }
+
+// .card-bottom-text{
+//   @extend .bold-text;
+//   text-align: left;
+//   margin-top: 0;
+//   font-size: 1.5rem;
+//   position: relative;
+//   left: $card-radius;
+// }
+
+// .background-img{
+//   position: absolute;
+//   top: 10em;
+//   left: -5em;
+//   z-index: -1;
+//   transform: rotate(-30deg);
+//   max-height: 100vh;
+//   opacity: 0.15;
+// }
+
+// .submenu{
+//   position: relative;
+// }
+
+// .container {
+//   width: 90%;
+//   height: 100vh;
+//   overflow-x: hidden;
+//   max-width: 1100px;
+//   margin: 0 auto;
+//   text-align: left;
+// }
+
+// .form-group{
+//   margin-bottom: 2em;
+//   >label.form-label{
+//     @extend .semi-bold-text;
+
+//     margin-right: 2em;
+//   }
+// }
+
+// .switch {
+//   position: relative;
+//   display: inline-block;
+//   width: 50px;
+//   height: 24px;
+// }
+
+// /* Hide default HTML checkbox */
+// .switch input {
+//   opacity: 0;
+//   width: 0;
+//   height: 0;
+// }
+
+// .pull-right{
+//   float: right;
+// }
+
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+@import "_colors";
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+$family-primary: 'Raleway';
+
+// Set your colors
+$scheme-main: $custom-white;
+
+$primary: $custom-primary;
+$primary-light: findLightColor($primary);
+$primary-dark: findDarkColor($primary);
+$primary-invert: findColorInvert($primary);
+$twitter: #4099FF;
+$twitter-invert: findColorInvert($twitter);
+
+
+
+$card-background-color: $custom-card;
+$card-footer-background-color: $white;
+// Lists and maps
+$custom-colors: null !default;
+$custom-shades: null !default;
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: mergeColorMaps(
+    (
+        "white": (
+            $white,
+            $black,
+        ),
+        "black": (
+            $black,
+            $white,
+        ),
+        "light": (
+            $light,
+            $light-invert,
+        ),
+        "dark": (
+            $dark,
+            $dark-invert,
+        ),
+        "primary": (
+            $primary,
+            $primary-invert,
+            $primary-light,
+            $primary-dark,
+        ),
+        "link": (
+            $link,
+            $link-invert,
+            $link-light,
+            $link-dark,
+        ),
+        "info": (
+            $info,
+            $info-invert,
+            $info-light,
+            $info-dark,
+        ),
+        "success": (
+            $success,
+            $success-invert,
+            $success-light,
+            $success-dark,
+        ),
+        "warning": (
+            $warning,
+            $warning-invert,
+            $warning-light,
+            $warning-dark,
+        ),
+        "danger": (
+            $danger,
+            $danger-invert,
+            $danger-light,
+            $danger-dark,
+        ),
+    ),
+    $custom-colors
+);
+
+// Links
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
+.dashboard-link{
+    max-width: 100%;
+    text-decoration: none;
+}
