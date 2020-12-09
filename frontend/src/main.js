@@ -3,8 +3,9 @@ import App from './App.vue';
 import router from './router';
 import VueI18n from 'vue-i18n';
 import translations from './translations/translations';
-import vSelect from 'vue-select'
-import Buefy from 'buefy'
+import Buefy from 'buefy';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 
 // import 'buefy/dist/buefy.css'
 import 'normalize.css';
@@ -13,9 +14,11 @@ import 'vue2-animate/dist/vue2-animate.min.css';
 
 import 'ionicons/dist/ionicons';
 
+axios.defaults.baseURL = 'http://localhost:5001';
+
 Vue.use(VueI18n);
 Vue.use(Buefy);
-Vue.component('v-select', vSelect)
+Vue.use(VueAxios, axios)
 
 const i18n = new VueI18n({
   locale: 'en', // set locale
@@ -28,6 +31,15 @@ const DEFAULT_TITLE = 'Braida';
 
 router.afterEach((to) => {
 
+    if (to.meta && to.meta.bgImage) {
+      document.body.style.backgroundRepeat = "no-repeat";
+      document.body.style.backgroundPosition = "center";
+      document.body.style.backgroundImage = `url(${to.meta.bgImage})`;
+    } else {
+      document.body.style.backgroundRepeat = "";
+      document.body.style.backgroundPosition = "";
+      document.body.style.backgroundImage = "";
+    }
     Vue.nextTick(() => {
         document.title = i18n.t(to.meta.title) || DEFAULT_TITLE;
     });

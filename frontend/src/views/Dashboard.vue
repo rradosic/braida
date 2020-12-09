@@ -56,7 +56,11 @@ import DashboardCard from "../components/Dashboard/DashboardCard.vue";
 export default {
   components: { DashboardCard },
   name: "Dashboard",
+  mounted(){
+    this.axios.get('/').then(response => (console.log(response)));
+  }
 };
+
 </script>
 
 <style>

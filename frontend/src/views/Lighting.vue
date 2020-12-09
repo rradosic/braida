@@ -5,40 +5,91 @@
     <h2 class="subtitle is-6">Customize your lighting options</h2>
 
     <div class="field">
-      <b-switch v-model="enabled">{{ $t("common.enabled") }}</b-switch>
+      <b-switch @input="saveFormData" v-model="saveData.enabled">{{
+        $t("common.enabled")
+      }}</b-switch>
     </div>
 
-      <div class="mt-5" >
-        <transition name="fade" mode="out-in">
-          <b-field v-if="enabled" :label="$t('common.type')">
-            <b-select v-model="type" placeholder="Select a type" required>
-              <option value="music">Music reactive</option>
-              <option value="static">Static</option>
-              <option value="festive">Festive</option>
-              <option value="flag">Flag</option>
-            </b-select>
-          </b-field>
+    <div class="mt-5">
+      <transition name="fade" mode="out-in">
+        <b-field v-if="saveData.enabled" :label="$t('common.type')">
+          <b-select
+            @input="changeType"
+            v-model="saveData.type"
+            placeholder="Select a type"
+            required
+          >
+            <option value="music">Music reactive</option>
+            <option value="static">Static</option>
+            <option value="festive">Festive</option>
+            <option value="flag">Flag</option>
+          </b-select>
+        </b-field>
       </transition>
-    <transition name="fade" mode="out-in">
+      <transition name="fade" mode="out-in">
         <music-reactive
           key="music-reactive"
-          v-if="type == 'music' && enabled "
+          :options="saveData.typeOptions"
+          v-if="saveData.type == 'music' && saveData.enabled"
         ></music-reactive>
-    </transition>
-      </div>
+        <static
+          key="flag"
+          :options="saveData.typeOptions"
+          v-if="saveData.type == 'static' && saveData.enabled"
+        ></static>
+        <flag
+          key="flag"
+          :options="saveData.typeOptions"
+          v-if="saveData.type == 'flag' && saveData.enabled"
+        ></flag>
+      </transition>
+      <transition name="fade">
+        <div v-if="saveData.enabled" class="buttons mt-5">
+          <b-button @click="saveFormData" type="is-primary" expanded>{{
+            $t("common.apply")
+          }}</b-button>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
+import Flag from "../components/Lighting/Flag.vue";
 import MusicReactive from "../components/Lighting/MusicReactive.vue";
+import Static from "../components/Lighting/Static.vue";
 export default {
   name: "Lighting",
-  components: { MusicReactive },
+  components: { MusicReactive, Flag, Static },
   data: () => {
     return {
-      enabled: false,
-      type: null,
+      saveData: {
+        enabled: false,
+        type: null,
+        typeOptions: {},
+      },
     };
+  },
+  mounted() {
+    var me = this;
+    this.axios
+      .get("/lighting")
+      .then((response) => (me.saveData = response.data));
+  },
+  methods: {
+    changeType() {
+      this.typeOptions = {};
+    },
+    saveFormData() {
+      var me = this;
+      this.axios
+        .post("/lighting", this.saveData)
+        .then((response) => {
+          if(response.data.success){
+            me.$emit('saveSuccess');
+          }
+        }).catch(() => me.$emit('saveError'));
+    },
   },
 };
 </script>

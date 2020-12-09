@@ -19,17 +19,18 @@
         slot="brand"
       >
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
-          <img
-            src="./assets/logo.png"
-            alt="Lightweight UI components for Vue.js based on Bulma"
-          />
+          <img src="./assets/logo.png" alt="Braida logo" />
         </b-navbar-item>
       </template>
     </b-navbar>
     <div class="container">
       <section class="section">
-        <transition name="zoom" mode="out-in">
-          <router-view />
+        <transition name="slideLeft" mode="out-in">
+          <router-view
+            @saveSuccess="backendSaveSuccess"
+            @saveError="backendSaveError"
+            style="animation-duration: 0.5s"
+          />
         </transition>
       </section>
     </div>
@@ -37,6 +38,36 @@
 </template>
 
 <script>
+export default {
+  methods: {
+    backendError() {
+      this.$buefy.snackbar.open({
+        message: this.$t("messages.backendError"),
+        type: "is-danger",
+        position: "is-bottom",
+        indefinite: true,
+      });
+    },
+    backendSaveSuccess() {
+      this.$buefy.snackbar.open({
+        message: this.$t("messages.backendSaveSuccess"),
+        type: "is-success",
+        position: "is-bottom",
+      });
+    },
+    backendSaveError() {
+      this.$buefy.snackbar.open({
+        message: this.$t("messages.backendSaveError"),
+        type: "is-danger",
+        position: "is-bottom",
+      });
+    },
+  },
+  mounted() {
+    var me = this;
+    this.axios.get("/").catch(() => me.backendError());
+  },
+};
 </script>
 
 <style lang="scss">
@@ -51,6 +82,7 @@
 body {
   min-height: 100vh;
   background-color: $custom-white;
+  // transition: background 1.5s linear;
 }
 
 .navbar-item img {
