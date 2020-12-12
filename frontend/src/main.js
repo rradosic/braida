@@ -14,7 +14,13 @@ import 'vue2-animate/dist/vue2-animate.min.css';
 
 import 'ionicons/dist/ionicons';
 
-axios.defaults.baseURL = 'http://localhost:5001';
+console.log(window.location.hostname);
+if(window.location.hostname == 'localhost'){
+  axios.defaults.baseURL = 'http://localhost:5001';
+}
+else{
+  axios.defaults.baseURL = 'http://192.168.1.2:5001';
+}
 
 Vue.use(VueI18n);
 Vue.use(Buefy);

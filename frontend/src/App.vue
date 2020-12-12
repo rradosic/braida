@@ -25,7 +25,10 @@
     </b-navbar>
     <div class="container">
       <section class="section">
-        <transition name="slideLeft" mode="out-in">
+        <transition
+          name="slideLeft"
+          mode="out-in"
+        >
           <router-view
             @saveSuccess="backendSaveSuccess"
             @saveError="backendSaveError"
