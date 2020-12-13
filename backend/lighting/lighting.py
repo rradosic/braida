@@ -4,6 +4,7 @@ import pickle
 from lighting.lighting_type import LightingType
 from lighting.static.static import StaticLighting
 from lighting.flag.flag import FlagLighting
+from lighting.music_reactive.music_reactive import MusicReactiveLighting
 
 class Lighting():
     """
@@ -11,7 +12,7 @@ class Lighting():
     """
 
     def __init__(self):
-        self.types = {'static': StaticLighting, 'flag': FlagLighting}
+        self.types = {'static': StaticLighting, 'flag': FlagLighting, 'music': MusicReactiveLighting}
 
 
     def update(self, options):

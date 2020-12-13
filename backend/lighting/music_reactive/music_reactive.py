@@ -1,8 +1,9 @@
+import subprocess
+import os
+import signal
 from lighting.lighting_type import LightingType
-import socket
-import numpy as np
 
-class MusicReactiveLigting(LightingType):
+class MusicReactiveLighting(LightingType):
     """
     Static lighting type
     """
@@ -11,10 +12,12 @@ class MusicReactiveLigting(LightingType):
         
     
     def start(self):
-        subprocess.run(["ls", "-l"], capture_output=True)
+        process = subprocess.Popen(["venv/bin/python","lighting/music_reactive/visualization.py"])
+        self.pid = process.pid
         return True
     
 
     def kill(self):
         self.turn_off_leds()
+        os.kill(self.pid, signal.SIGTERM)
         return True
