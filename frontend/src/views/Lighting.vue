@@ -45,7 +45,7 @@
       </transition>
       <transition name="fade">
         <div v-if="saveData.enabled" class="buttons mt-5">
-          <b-button @click="saveFormData" type="is-primary" expanded>{{
+          <b-button @click="saveFormData" type="is-primary" >{{
             $t("common.apply")
           }}</b-button>
         </div>

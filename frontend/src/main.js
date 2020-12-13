@@ -12,6 +12,7 @@ import 'normalize.css';
 import './assets/scss/style.scss';
 import 'vue2-animate/dist/vue2-animate.min.css';
 
+import '@mdi/font/css/materialdesignicons.min.css'
 import 'ionicons/dist/ionicons';
 
 console.log(window.location.hostname);

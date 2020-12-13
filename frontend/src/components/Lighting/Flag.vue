@@ -1,13 +1,14 @@
 <template>
   <div class="mt-5">
-    <b-field label="Find a name">
-      <b-autocomplete
-        v-model="options.country"
-        placeholder="Croatia"
-        :open-on-focus="true"
-        :data="filteredDataArray"
-      >
-      </b-autocomplete>
+    <b-field label="Coutry">
+      <b-select v-model="options.country" placeholder="Select a country">
+                <option
+                    v-for="option in data"
+                    :value="option.id"
+                    :key="option.id">
+                    {{ option.name }}
+                </option>
+            </b-select>
     </b-field>
   </div>
 </template>
@@ -19,7 +20,9 @@ export default {
   },
   data() {
     return {
-      data: ["Croatia", "England"],
+      data: [
+        {id:"hr", name:"Croatia"}
+      ],
       name: "",
       selected: null,
     };
